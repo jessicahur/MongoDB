@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Employee = new Schema({
+  _id: {
+    type: String,
+    require: true,
+    unique: true,
+    index: true
+  },
   name: {
     type: String,
     required: true
@@ -39,10 +45,6 @@ const Employee = new Schema({
     type: String,
     require: true,
     enum: ['manager', 'accountant', 'engineer', 'receptionist']
-  },
-  manager: {
-    type: Schema.Types.ObjectId,
-    ref: 'Employee'
   }
 });
 
