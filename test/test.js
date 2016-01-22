@@ -66,7 +66,7 @@ describe ('Mongo-Mongoose', () => {
         .post('/employees')
         .send(testJson)
         .end((err, res) => {
-          expect(400);
+          expect(res).to.have.status(400);
           done();
         });
   });
@@ -86,7 +86,7 @@ describe ('Mongo-Mongoose', () => {
         .post('/employees')
         .send(testJson)
         .end((err, res) => {
-          expect(400);
+          expect(res).to.have.status(400);
           done();
         });
   });
@@ -96,7 +96,7 @@ describe ('Mongo-Mongoose', () => {
     chai.request(app)
         .get('/employees')
         .end((err, res) => {
-          expect(200);
+          expect(res).to.have.status(200);
           expect(res.body.length).to.not.be.undefined;
           done();
         });
