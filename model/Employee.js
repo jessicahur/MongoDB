@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Employee = new Schema({
+const Employee = new Schema({ //Future updates cannot alter id and username
   _id: {
     type: String,
     require: true,
