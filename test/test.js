@@ -8,10 +8,7 @@ const expect = chai.expect;
 
 const mongoose = require('mongoose');
 
-
 chai.use(chaiHttp);
-
-
 
 describe ('Mongo-Mongoose', () => {
   before((done) => {
