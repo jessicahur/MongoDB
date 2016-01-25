@@ -20,6 +20,7 @@
     "body-parser": "^1.14.2",
     "chai": "^3.4.1",
     "chai-http": "^1.0.0",
+    "express": "^4.13.4",
     "foreman": "^1.4.1",
     "gulp": "^3.9.0",
     "gulp-jshint": "^2.0.0",
@@ -27,12 +28,10 @@
     "gulp-util": "^3.0.7",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
+    "kerberos": "0.0.18",
     "mocha": "^2.3.4",
     "mongodb": "^2.1.4",
     "mongoose": "^4.3.6",
     "nodemon": "^1.8.1"
-  },
-  "dependencies": {
-    "express": "^4.13.4"
   }
 }
