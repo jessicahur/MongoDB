@@ -34,7 +34,31 @@
         <td ng-click="delete(employee)"><a>Delete</a></td>
       </tr>
     </table>
-
+    <h3 ng-show='deleteConfirmation'>{{deleteConfirmation}}</h3>
+    <div ng-show="deletedEmployee">
+      <table>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Position</th>
+      </tr>
+      <tr >
+        <td>{{deletedEmployee.name}}</td>
+        <td>{{deletedEmployee._id}}</td>
+        <td>{{deletedEmployee.username}}</td>
+        <td>{{deletedEmployee.DOB}}</td>
+        <td>{{deletedEmployee.address}}</td>
+        <td>{{deletedEmployee.phone}}</td>
+        <td>{{deletedEmployee.email}}</td>
+        <td>{{deletedEmployee.position}}</td>
+      </tr>
+    </table>
+    </div>
   </main>
 </body>
 </html>
