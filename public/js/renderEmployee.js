@@ -32,6 +32,12 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
           });
   }
 
+  //EDIT-PUT/PATCH
+  $scope.edit = function(employee) {
+    $scope.newEmployee = employee;
+    $scope.editEmployee = true;
+  }
+
   //ADD-POST
   $scope.addEmployee = function() {
     $http.post('/employees', JSON.stringify($scope.newEmployee))
