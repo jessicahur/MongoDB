@@ -41,6 +41,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
     $scope.editEmployee = true;
   }
   $scope.cancelEdit = function() {
+    $scope.editEmployee = null;
     $scope.badRequest = false;
     $http.get('/employees/'+$scope.newEmployee.index)
          .then(
