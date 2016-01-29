@@ -2,14 +2,15 @@
 <html lang="en" ng-app='employeeApp'>
 <head>
   <title>Employee List</title>
-  <!-- // <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <script src='js/lib/angular.min.js'></script>
   <script src="js/renderEmployee.js"></script>
 </head>
 <body>
   <main ng-controller = "EmployeeController">
     <h3>Employees</h3>
-    <table>
+    <table class = "table table-bordered">
       <tr>
         <th>Name</th>
         <th>ID</th>
@@ -19,6 +20,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Position</th>
+        <th></th>
         <th></th>
       </tr>
       <tr ng-repeat = "employee in employees">
@@ -36,23 +38,50 @@
     </table>
 
     <!--POST-->
-    <form ng-submit = "addEmployee()">
-      <label>Name: <input ng-model = "newEmployee.name"></label>
-      <label>ID: <input ng-model = "newEmployee._id"></label>
-      <label>Username: <input ng-model = "newEmployee.username"></label>
-      <label>DOB: <input ng-model = "newEmployee.DOB"></label>
-      <label>Address: <input ng-model = "newEmployee.address"></label>
-      <label>Phone: <input ng-model = "newEmployee.phone"></label>
-      <label>Email: <input ng-model = "newEmployee.email"></label>
-      <label>Position: <input ng-model = "newEmployee.position"></label>
-      <button type='submit'>ADD</button>
+    <h3>Add New Employee:</h3>
+    <form ng-submit = "addEmployee()" class = "form-horizontal">
+      <label class="col-sm-2 control-label">Name: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.name" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">ID: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee._id" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Username: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.username" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">DOB: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.DOB" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Address: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.address" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Phone: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.phone" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Email: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.email" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Position: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.position" type="text" class = "form-control">
+      </div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type='submit' class="btn btn-default">ADD</button>
+      </div>
     </form>
 
     <!--DELETE-->
     <h3 ng-show = "deleteConfirmation">{{deleteConfirmation}}</h3>
     <div ng-show = "deletedEmployee">
-      <table>
-      <tr>
+      <table class = "table table-bordered">
+      <tr class="danger">
         <th>Name</th>
         <th>ID</th>
         <th>User Name</th>

@@ -2,8 +2,12 @@ var employeeApp = angular.module( 'employeeApp', []);
 
 employeeApp.controller('EmployeeController', function($scope, $http) {
 
+  //GET
   $http.get('/employees').then( function( res ) {
     $scope.employees = res.data;//Angular specific
+    $scope.employees.forEach(function(employee){
+      employee.DOB = employee.DOB.substring(0,10);
+    });
   });
 
   //DELETE
@@ -14,6 +18,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
           function(res){
             $scope.deleteConfirmation = 'Deleted Employee:';
             $scope.deletedEmployee = res.data;
+            $scope.deletedEmployee.DOB = $scope.deletedEmployee.DOB.substring(0,10);
             var temp = [];
             $scope.employees.forEach(function(employee){
               if (employee._id != $scope.deleteEmployeeId){
@@ -32,7 +37,9 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
     $http.post('/employees', JSON.stringify($scope.newEmployee))
          .then(
             function(res){
-              $scope.employees.push(res.data);
+              var newEmployee = res.data;
+              newEmployee.DOB = newEmployee.DOB.substring(0,10);
+              $scope.employees.push(newEmployee);
             },
             function(err){
 
