@@ -60,23 +60,32 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
             function(err) {
               $scope.badRequest = `${err.status}: ${err.data.errmsg}`;
             }
-          )
+          );
   }
   $scope.editSelectedEmployee = function() {
-    $http.put('/employees/'+$scope.idHolder, $scope.newEmployee)
+    $http.put('/employees/'+$scope.newEmployee.index, $scope.newEmployee)
          .then(
             function(res){
+              var temp = [];
+              $scope.employees.forEach(function(employee){
+                if (employee.index != $scope.newEmployee.index){
+                  temp.push(employee);
+                }
+              });
               // console.log(res);
-              $scope.editedEmployee = res.data;
-              $scope.editedEmployee.DOB = $scope.editedEmployee.DOB.substring(0,10);
-              $scope.newEmployee = {};
+              $scope.employees = temp;
+              res.data.index = res.data._id;
+              res.data.DOB = res.data.DOB.substring(0,10);
+              $scope.employees.push(res.data);
+
+              $scope.newEmployee = null;
               $scope.badRequest = false;
             },
             function(err){
               console.log(err);
               $scope.badRequest = `${err.status}: ${err.data.errmsg}`;
             }
-          )
+          );
   }
 
   //ADD-POST
