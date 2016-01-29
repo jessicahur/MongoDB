@@ -40,9 +40,10 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               var newEmployee = res.data;
               newEmployee.DOB = newEmployee.DOB.substring(0,10);
               $scope.employees.push(newEmployee);
+              $scope.badRequest = null;
             },
             function(err){
-
+              $scope.badRequest = `${err.status}: ${err.statusText}`;
             }
           )
   }
