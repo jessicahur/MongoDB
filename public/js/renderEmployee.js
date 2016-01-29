@@ -4,7 +4,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
 
   //GET
   $http.get('/employees').then( function( res ) {
-    $scope.employees = res.data;//Angular specific
+    $scope.employees = res.data;//Angular specific(?)
     $scope.employees.forEach(function(employee){
       employee.DOB = employee.DOB.substring(0,10);
     });
@@ -39,6 +39,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
     $scope.editEmployee = true;
   }
   $scope.cancelEdit = function() {
+    $scope.badRequest = false;
     $http.get('/employees/'+$scope.idHolder)
          .then(
             function(res) {
@@ -51,6 +52,9 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               $scope.employees = temp;
               $scope.employees.push(res.data);
               $scope.newEmployee = null;
+            },
+            function(err) {
+              $scope.badRequest = `${err.status}: ${err.data.errmsg}`;
             }
           )
   }
@@ -65,7 +69,8 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               $scope.badRequest = false;
             },
             function(err){
-              $scope.badRequest = `${err.status}: ${err.statusText}`;
+              console.log(err);
+              $scope.badRequest = `${err.status}: ${err.data.errmsg}`;
             }
           )
   }
@@ -82,7 +87,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               $scope.newEmployee = {};
             },
             function(err){
-              $scope.badRequest = `${err.status}: ${err.statusText}`;
+              $scope.badRequest = `${err.status}: ${err.data.errmsg}`;
             }
           )
   }
