@@ -23,7 +23,7 @@
         <th></th>
         <th></th>
       </tr>
-      <tr ng-repeat = "employee in employees">
+      <tr ng-repeat = "employee in employees track by employee.index">
         <td>{{employee.name}}</td>
         <td>{{employee._id}}</td>
         <td>{{employee.username}}</td>
