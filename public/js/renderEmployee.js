@@ -35,13 +35,47 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
   //EDIT-PUT/PATCH
   $scope.edit = function(employee) {
     $scope.newEmployee = employee;
+    $scope.idHolder = $scope.newEmployee._id;
     $scope.editEmployee = true;
   }
+  $scope.cancelEdit = function() {
+    $http.get('/employees/'+$scope.idHolder)
+         .then(
+            function(res) {
+              var temp = [];
+              $scope.employees.forEach(function(employee){
+                if (employee._id != $scope.newEmployee._id){
+                  temp.push(employee);
+                }
+              });
+              $scope.employees = temp;
+              $scope.employees.push(res.data);
+              $scope.newEmployee = null;
+            }
+          )
+  }
   $scope.editSelectedEmployee = function() {
-    $http.put('/employees', JSON.stringify($scope.newEmployee))
+    // var selectedEmployee = $scope.newEmployee;
+    // console.log(selectedEmployee);
+    // delete selectedEmployee._id;
+    $http.put('/employees/'+$scope.newEmployee._id, $scope.newEmployee)
          .then(
             function(res){
-
+              // console.log(res);
+              $scope.editedEmployee = res.data;
+              $scope.editedEmployee.DOB = $scope.editedEmployee.DOB.substring(0,10);
+              $scope.newEmployee = {};
+              // var temp = [];
+              // $scope.employees.forEach(function(employee){
+              //   if (employee._id != $scope.editedEmployeeId){
+              //     temp.push(employee);
+              //   }
+              // });
+              // $scope.employees = temp;
+              // $scope.editEmployee = false;
+            },
+            function(err){
+              $scope.badRequest = `${err.status}: ${err.statusText}`;
             }
           )
   }

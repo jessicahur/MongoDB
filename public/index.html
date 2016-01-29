@@ -76,8 +76,8 @@
       </div>
       <div class="col-sm-offset-2 col-sm-10">
         <button ng-show = "!editEmployee" ng-click = "addEmployee()" type='submit' class="btn btn-success">ADD</button>
-        <button ng-show = "editEmployee" ng-click = "addEmployee()" type='submit' class="btn btn-danger">EDIT</button>
-        <button ng-show = "editEmployee" ng-click = "newEmployee=null" type='reset' class="btn btn-warning">CANCEL</button>
+        <button ng-show = "editEmployee" ng-click = "editSelectedEmployee()" type='submit' class="btn btn-danger">EDIT</button>
+        <button ng-show = "editEmployee" ng-click = "cancelEdit()" type='reset' class="btn btn-warning">CANCEL</button>
       </div>
     </form>
 
