@@ -96,7 +96,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               var newEmployee = res.data;
               newEmployee.DOB = newEmployee.DOB.substring(0,10);
               $scope.employees.push(newEmployee);
-              $scope.badRequest = null;
+              $scope.badRequest = false;
               $scope.newEmployee = {};
             },
             function(err){
