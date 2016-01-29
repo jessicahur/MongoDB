@@ -34,8 +34,23 @@
         <td ng-click="delete(employee)"><a>Delete</a></td>
       </tr>
     </table>
-    <h3 ng-show='deleteConfirmation'>{{deleteConfirmation}}</h3>
-    <div ng-show="deletedEmployee">
+
+    <!--POST-->
+    <form ng-submit = "addEmployee()">
+      <label>Name: <input ng-model = "newEmployee.name"></label>
+      <label>ID: <input ng-model = "newEmployee._id"></label>
+      <label>Username: <input ng-model = "newEmployee.username"></label>
+      <label>DOB: <input ng-model = "newEmployee.DOB"></label>
+      <label>Address: <input ng-model = "newEmployee.address"></label>
+      <label>Phone: <input ng-model = "newEmployee.phone"></label>
+      <label>Email: <input ng-model = "newEmployee.email"></label>
+      <label>Position: <input ng-model = "newEmployee.position"></label>
+      <button type='submit'>ADD</button>
+    </form>
+
+    <!--DELETE-->
+    <h3 ng-show = "deleteConfirmation">{{deleteConfirmation}}</h3>
+    <div ng-show = "deletedEmployee">
       <table>
       <tr>
         <th>Name</th>

@@ -5,12 +5,13 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
   $http.get('/employees').then( function( res ) {
     $scope.employees = res.data;//Angular specific
   });
+
+  //DELETE
   $scope.delete = function(employee) {
     $scope.deleteEmployeeId = employee._id;
     $http.delete('/employees/'+$scope.deleteEmployeeId)
          .then(
           function(res){
-            console.log(res.data);
             $scope.deleteConfirmation = 'Deleted Employee:';
             $scope.deletedEmployee = res.data;
             var temp = [];
@@ -24,6 +25,19 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
           function(err){
             $scope.deleteConfirmation = res.statusText;
           });
+  }
+
+  //ADD-POST
+  $scope.addEmployee = function() {
+    $http.post('/employees', JSON.stringify($scope.newEmployee))
+         .then(
+            function(res){
+              $scope.employees.push(res.data);
+            },
+            function(err){
+
+            }
+          )
   }
 });
 
