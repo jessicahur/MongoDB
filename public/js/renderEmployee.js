@@ -37,6 +37,14 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
     $scope.newEmployee = employee;
     $scope.editEmployee = true;
   }
+  $scope.editSelectedEmployee = function() {
+    $http.put('/employees', JSON.stringify($scope.newEmployee))
+         .then(
+            function(res){
+
+            }
+          )
+  }
 
   //ADD-POST
   $scope.addEmployee = function() {
@@ -47,6 +55,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               newEmployee.DOB = newEmployee.DOB.substring(0,10);
               $scope.employees.push(newEmployee);
               $scope.badRequest = null;
+              $scope.newEmployee = {};
             },
             function(err){
               $scope.badRequest = `${err.status}: ${err.statusText}`;

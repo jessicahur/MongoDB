@@ -41,7 +41,7 @@
 
     <h3>Add/Edit Employee:</h3>
     <h4 ng-show = "badRequest" class="text-center"><mark>{{badRequest}}</mark></h4>
-    <form ng-submit = "addEmployee()" class = "form-horizontal">
+    <form class = "form-horizontal">
       <label class="col-sm-2 control-label">Name: </label>
       <div class="col-sm-10">
         <input ng-model = "newEmployee.name" type="text" class = "form-control">
@@ -75,9 +75,9 @@
         <input ng-model = "newEmployee.position" type="text" class = "form-control">
       </div>
       <div class="col-sm-offset-2 col-sm-10">
-        <button ng-show = "!editEmployee" type='submit' class="btn btn-success">ADD</button>
-        <button ng-show = "editEmployee" type='submit' class="btn btn-danger">EDIT</button>
-        <button ng-show = "editEmployee" ng-click = "editEmployee=false" type='reset' class="btn btn-warning">CANCEL</button>
+        <button ng-show = "!editEmployee" ng-click = "addEmployee()" type='submit' class="btn btn-success">ADD</button>
+        <button ng-show = "editEmployee" ng-click = "addEmployee()" type='submit' class="btn btn-danger">EDIT</button>
+        <button ng-show = "editEmployee" ng-click = "newEmployee=null" type='reset' class="btn btn-warning">CANCEL</button>
       </div>
     </form>
 
