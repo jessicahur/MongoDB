@@ -55,9 +55,6 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
           )
   }
   $scope.editSelectedEmployee = function() {
-    // var selectedEmployee = $scope.newEmployee;
-    // console.log(selectedEmployee);
-    // delete selectedEmployee._id;
     $http.put('/employees/'+$scope.idHolder, $scope.newEmployee)
          .then(
             function(res){
@@ -65,14 +62,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
               $scope.editedEmployee = res.data;
               $scope.editedEmployee.DOB = $scope.editedEmployee.DOB.substring(0,10);
               $scope.newEmployee = {};
-              // var temp = [];
-              // $scope.employees.forEach(function(employee){
-              //   if (employee._id != $scope.editedEmployeeId){
-              //     temp.push(employee);
-              //   }
-              // });
-              // $scope.employees = temp;
-              // $scope.editEmployee = false;
+              $scope.badRequest = false;
             },
             function(err){
               $scope.badRequest = `${err.status}: ${err.statusText}`;
