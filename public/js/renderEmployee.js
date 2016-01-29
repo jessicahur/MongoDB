@@ -58,7 +58,7 @@ employeeApp.controller('EmployeeController', function($scope, $http) {
     // var selectedEmployee = $scope.newEmployee;
     // console.log(selectedEmployee);
     // delete selectedEmployee._id;
-    $http.put('/employees/'+$scope.newEmployee._id, $scope.newEmployee)
+    $http.put('/employees/'+$scope.idHolder, $scope.newEmployee)
          .then(
             function(res){
               // console.log(res);
