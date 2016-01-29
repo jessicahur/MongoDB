@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='employeeApp'>
+<head>
+  <title>Employee List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src='js/lib/angular.min.js'></script>
+  <script src="js/renderEmployee.js"></script>
+</head>
+<body>
+  <main ng-controller = "EmployeeController">
+    <h3>Employees</h3>
+    <table class = "table table-bordered table-striped">
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr ng-repeat = "employee in employees">
+        <td>{{employee.name}}</td>
+        <td>{{employee._id}}</td>
+        <td>{{employee.username}}</td>
+        <td>{{employee.DOB}}</td>
+        <td>{{employee.address}}</td>
+        <td>{{employee.phone}}</td>
+        <td>{{employee.email}}</td>
+        <td>{{employee.position}}</td>
+        <td ng-click = "edit(employee)"><a>Edit</a></td>
+        <td ng-click = "delete(employee)"><a>Delete</a></td>
+      </tr>
+    </table>
+
+    <!--POST-->
+
+    <h3>Add/Edit Employee:</h3>
+    <p ng-show = "badRequest" class="text-center"><mark>{{badRequest}}</mark></p>
+    <form class = "form-horizontal">
+      <label class="col-sm-2 control-label">Name: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.name" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">ID: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee._id" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Username: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.username" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">DOB: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.DOB" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Address: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.address" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Phone: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.phone" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Email: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.email" type="text" class = "form-control">
+      </div>
+      <label class="col-sm-2 control-label">Position: </label>
+      <div class="col-sm-10">
+        <input ng-model = "newEmployee.position" type="text" class = "form-control">
+      </div>
+      <div class="col-sm-offset-2 col-sm-10">
+        <button ng-show = "!editEmployee" ng-click = "addEmployee()" type='submit' class="btn btn-success">ADD</button>
+        <button ng-show = "editEmployee" ng-click = "editSelectedEmployee()" type='submit' class="btn btn-danger">EDIT</button>
+        <button ng-show = "editEmployee" ng-click = "cancelEdit()" type='reset' class="btn btn-warning">CANCEL</button>
+      </div>
+    </form>
+
+    <!--DELETE-->
+    <h3 ng-show = "deleteConfirmation">{{deleteConfirmation}}</h3>
+    <div ng-show = "deletedEmployee">
+      <table class = "table table-bordered">
+      <tr class="danger">
+        <th>Name</th>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>DOB</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Position</th>
+      </tr>
+      <tr >
+        <td>{{deletedEmployee.name}}</td>
+        <td>{{deletedEmployee._id}}</td>
+        <td>{{deletedEmployee.username}}</td>
+        <td>{{deletedEmployee.DOB}}</td>
+        <td>{{deletedEmployee.address}}</td>
+        <td>{{deletedEmployee.phone}}</td>
+        <td>{{deletedEmployee.email}}</td>
+        <td>{{deletedEmployee.position}}</td>
+      </tr>
+    </table>
+    </div>
+  </main>
+</body>
+</html>
